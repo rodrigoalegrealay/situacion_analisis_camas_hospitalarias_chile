@@ -28,13 +28,4 @@ La visualización esta disponible en [Tableu](https://public.tableau.com/app/pro
 * **Visualización:** Power BI Desktop (Dashboards ejecutivos).
 * **Documentación:** Markdown y bitácoras técnicas.
 
-## 🏗️ Estructura del Repositorio
-```text
-salud_chile/
-├── 📂 1. data/           # Almacén de fuentes (raw) y datos procesados
-├── 🛠️ 2. scripts/        # Modelado SQL y scripts de ETL (.pq)
-├── 📝 3. docs/           # Bitácoras de normalización y modelado
-└── 🖥️ 4. dashboards/     # Reportes en Power BI (.pbix)
-
-----
-Desarrollado por [Rodrigo Alegre Alay] en lenguajes SQL, PQ y DAX. Código disponible en [GitHub](https://github.com/rodrigoalegrealay/situacion_analisis_camas_hospitalarias_chile).
+# Desarrollado por [Rodrigo Alegre Alay] en lenguajes SQL, PQ y DAX. Código disponible en [GitHub](https://github.com/rodrigoalegrealay/situacion_analisis_camas_hospitalarias_chile).
