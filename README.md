@@ -28,4 +28,4 @@ La visualización esta disponible en [Tableu](https://public.tableau.com/app/pro
 * **Visualización:** Power BI Desktop (Dashboards ejecutivos).
 * **Documentación:** Markdown y bitácoras técnicas.
 
-# Desarrollado por [Rodrigo Alegre Alay] en lenguajes SQL, PQ y DAX. Código disponible en [GitHub](https://github.com/rodrigoalegrealay/situacion_analisis_camas_hospitalarias_chile).
+### Desarrollado por [Rodrigo Alegre Alay] en lenguajes SQL, PQ y DAX. Código disponible en [GitHub](https://github.com/rodrigoalegrealay/situacion_analisis_camas_hospitalarias_chile).
