@@ -17,7 +17,7 @@ Los datos se descargan desde [Portal de datos abierto](https://datos.gob.cl/) en
 ## Datos
 La visualización esta disponible en [Tableu](https://public.tableau.com/app/profile/rodrigo.alegre/viz/SaludHospitalariaChile/Dashboard1)
 
-###Fuente
+##Fuente
 - Portal de datos abierto - Establecimientos de salud (https://datos.gob.cl/dataset/establecimientos-de-salud-vigentes)
 - Portal de datos abierto - Indicadores del proceso de hospitalización de los establecimientos públicos de Salud (https://datos.gob.cl/dataset/indicadores-hospitalarios-rem20)
 
