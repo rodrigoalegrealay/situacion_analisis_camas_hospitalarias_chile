@@ -1,0 +1,38 @@
+## Normalizacion establecimiento_salud_2026
+let
+    // 1. CARGA CON ENCODING CORRECTO (UTF-8 es 65001, esto suele arreglar el 90% de los errores)
+    Origen = Csv.Document(File.Contents("C:\Users\djrup\OneDrive\Escritorio\salud_chile\1. data\raw\establecimientos_20260602.csv"), 
+        [
+            Delimiter=";", 
+            Columns=33, 
+            Encoding=65001, 
+            QuoteStyle=QuoteStyle.Csv 
+        ]),
+    
+    #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+
+    // 2. FUNCIÓN DE LIMPIEZA MAESTRA
+    LimpiarTexto = (texto) => 
+        let
+            Mapa = {
+                {"Ã¡", "A"}, {"Ã©", "E"}, {"Ã­", "I"}, {"Ã³", "O"}, {"Ãº", "U"},
+                {"Ã±", "Ñ"}, {"Ã", "A"}, {"Â", ""}, {"¡", "I"}, {"¿", ""},
+                {"Ãƒ", "A"}, {"Ã‘", "Ñ"}
+            },
+            Limpio = List.Accumulate(Mapa, texto, (estado, actual) => Text.Replace(estado, actual{0}, actual{1}))
+        in Text.Upper(Text.Trim(Limpio)),
+
+    // 3. APLICAR A TODAS LAS COLUMNAS DE TEXTO DE UNA VEZ
+    ColumnasDeTexto = {"RegionGlosa", "SeremiSaludGlosa_ServicioDeSaludGlosa", "TipoEstablecimientoGlosa", 
+                       "AmbitoFuncionamiento", "EstablecimientoGlosa", "ComunaGlosa", "TipoAtencionEstabGlosa", 
+                       "EstadoFuncionamiento", "TipoSistemaSaludGlosa"},
+    
+    #"Texto Limpiado" = Table.TransformColumns(#"Encabezados promovidos", List.Transform(ColumnasDeTexto, each {_, each LimpiarTexto(_), type text})),
+
+    // 4. TIPOS DE DATOS
+    #"Tipo cambiado" = Table.TransformColumnTypes(#"Texto Limpiado", {
+        {"EstablecimientoCodigo", Int64.Type}, {"RegionCodigo", Int64.Type}, 
+        {"ComunaCodigo", Int64.Type}, {"FechaInicioFuncionamientoEstab", type date}
+    })
+in
+    #"Tipo cambiado"

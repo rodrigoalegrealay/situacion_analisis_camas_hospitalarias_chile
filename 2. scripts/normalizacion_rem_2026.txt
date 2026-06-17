@@ -1,0 +1,28 @@
+## Normalizacion rem_2026
+let
+    // 1. CARGA (Forzamos la lectura con codificación 65001 - UTF-8, a ver si así llegan mejor)
+    Origen = Csv.Document(File.Contents("C:\Users\djrup\OneDrive\Escritorio\salud_chile\1. data\raw\indicadores_rem20_20260525.csv"),[Delimiter=";", Columns=20, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+    #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+
+    // 2. FUNCIÓN DE LIMPIEZA REFORZADA
+    LimpiarYNormalizar = (texto) => 
+        let 
+            // Lista de caracteres "fantasma" y sus correcciones
+            Reemplazos = {
+                {"ÃR", "AR"}, {"ÃR", "AR"}, {"ÃR", "AR"}, // Por si viene en mayúsculas
+                {"ÃR", "AR"}, {"ÃI", "AI"}, {"ÃI", "Í"},
+                {"ÃR", "AR"}, {"Ã", "A"}, {"Ã", "I"}, 
+                {"Ã­o", "IO"}, {"Ã±", "Ñ"}, {"Ã¡", "A"}, 
+                {"Ã©", "E"}, {"Ã³", "O"}, {"Ãº", "U"}
+            },
+            // Aplicamos reemplazos y luego forzamos la corrección de errores comunes de encoding
+            SinCaracteresRaros = List.Accumulate(Reemplazos, texto, (s, a) => Text.Replace(s, a{0}, a{1}))
+        in Text.Upper(Text.Trim(SinCaracteresRaros)),
+
+    // 3. APLICACIÓN
+    ColumnasTexto = {"GLOSA_SSS", "ESTABLECIMIENTO", "AREA_FUNCIONAL"},
+    #"Texto Limpiado" = Table.TransformColumns(#"Encabezados promovidos", List.Transform(ColumnasTexto, each {_, each LimpiarYNormalizar(_), type text}))
+in
+    #"Texto Limpiado"
+
+
