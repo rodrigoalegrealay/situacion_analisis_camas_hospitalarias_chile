@@ -1,0 +1,23 @@
+BITÁCORA DE NORMALIZACIÓN - PROYECTO: SALUD CHILE 2026 - INDICADORES DE ESTABLECIMIENTOS
+========================================================================================
+Fecha: 2026-06-16
+Responsable: Rodrigo Alegre Alay
+
+[MODELADO 001]
+- Acción: Implementación de KPIs Dinámicos de Gestión.
+- Problema: Los indicadores de letalidad y rotación mostraban valores estáticos globales, ignorando el filtro de periodo.
+- Acción: Sustitución de medidas {FIXED} por medidas de agregación dinámica (SUM/AVG) vinculadas al contexto de filtro.
+- Resultado: KPIs que se actualizan automáticamente según el año seleccionado, garantizando precisión en el reporte.
+
+[MODELADO 002]
+- Acción: Optimización de la Jerarquía Visual del Dashboard.
+- Problema: El espacio superior del tablero lucía desaprovechado y carecía de una lectura rápida para la toma de decisiones.
+- Acción: Creación de un panel superior de KPIs (Tarjetas de datos) alineados con el filtro de periodo y diseño de contenedores para mejorar la UX.
+- Resultado: Transformación de un conjunto de gráficos dispersos en un panel ejecutivo de gestión con flujo lógico..
+
+[MODELADO 003]
+- Acción: Resolución de Conflictos de Renderizado y Contenedores.
+- Problema: Las hojas individuales de los KPIs no se visualizaban correctamente al integrarlas al Dashboard principal debido a restricciones de tamaño y contenedores.
+- Acción: Implementación de diseño en capas con contenedores horizontales y modo "Flotante" para asegurar la integridad visual en el layout.
+- Resultado: Interfaz estable, libre de errores de visualización y perfectamente alineada con el resto de los componentes del Dashboard.
+*/

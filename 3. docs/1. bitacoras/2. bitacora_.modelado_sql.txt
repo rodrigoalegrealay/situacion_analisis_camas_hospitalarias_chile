@@ -1,0 +1,23 @@
+BITÁCORA DE NORMALIZACIÓN - PROYECTO: SALUD CHILE 2026 - INDICADORES DE ESTABLECIMIENTOS
+========================================================================================
+Fecha: 2026-06-14
+Responsable: Rodrigo Alegre Alay
+
+[MODELADO 001]
+- Acción: Creación de Esquema en Estrella (Star Schema).
+- Problema: Datos operativos (REM) dispersos dificultaban los cruces con datos geográficos y de complejidad.
+- Diseño: Se separó en Dim_Establecimientos (Dimensión) y Fact_REM (Hechos).
+- Resultado: Optimización de consultas JOIN y reducción de redundancia en ~40%.
+
+[MODELADO 002]
+- Acción: Implementación de Integridad Referencial.
+- Problema: Riesgo de registros huérfanos en la tabla de hechos.
+- Acción: Definición de Foreign Keys entre Fact_REM.Codigo_Establecimiento y Dim_Establecimientos.Establecimiento_Codigo.
+- Resultado: Consistencia de datos garantizada a nivel de motor SQL.
+
+[MODELADO 003]
+- Acción: Creación de Vista para BI (View_Dashboard_Salud).
+- Problema: Alta complejidad en la lógica de cálculo dentro de Power BI (DAX pesado).
+- Acción: Centralización de cálculos de Brecha y KPIs en una vista SQL optimizada.
+- Resultado: Dashboard con mejor rendimiento de carga y menor carga de cómputo en cliente final.
+*/

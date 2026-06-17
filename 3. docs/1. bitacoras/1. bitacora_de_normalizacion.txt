@@ -1,0 +1,16 @@
+BITÁCORA DE NORMALIZACIÓN - PROYECTO: SALUD CHILE 2026 - INDICADORES DE ESTABLECIMIENTOS
+========================================================================================
+Fecha: 2026-06-14
+Responsable: Rodrigo Alegre Alay
+
+[CAMBIO 001]
+- Archivo afectado: indicadores_rem20_20260525.csv
+- Problema: Inconsistencia de encoding (UTF-8/ANSI) en columnas de texto.
+- Acción: Implementación de función personalizada en M (LimpiarYNormalizar).
+- Resultado: Eliminación de caracteres fantasma en nombres de establecimientos.
+
+[CAMBIO 002]
+- Archivo afectado: establecimientos_20260602.csv
+- Problema: Valores nulos detectados en 'TipoUrgencia'.
+- Acción: Imputación mediante lógica de negocio (asignación de etiqueta 'NO APLICA').
+- Estado: Validado.
